@@ -68,6 +68,29 @@ button, input, optgroup, select, textarea{
     color: white;
     font-weight: 900;
     background-color: green;
-    text-align: center;
+}
+
+.svg-carrito{
+    height: 70px;
+    width: 70px;
+}
+
+.num-carrito{
+    font-size: 3rem;
+
+}
+
+.modal-precio {
+    background-color: #fefefe;
+    margin: auto;
     padding: 20px;
+    border: 1px solid lightgray;
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btnVaciar{
+    background-color: green;
+    border-radius: 5px;
 }
