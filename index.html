@@ -15,30 +15,47 @@
 </head>
 
 <body>
-    <header>
+    <header class="container">
+        <!-- Button trigger modal -->
+        <button id="btnModal" type="button" class="btn btn-primary" data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-cart svg-carrito" viewBox="0 0 16 16">
+                <path
+                    d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+            </svg><span class="num-carrito" id="contador-carrito">0</span>
+        </button>
 
-    </header>
-    <div class="container">
-        <button id="btnModal" class="carrito"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart svg-carrito" viewBox="0 0 16 16">
-            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-          </svg><span class="num-carrito" id="contador-carrito">0</span></button>
-        <div id="myModal" class="modalContainer">
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Carrito</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="carrito-contenedor">
+                        ...
+                    </div>
+                    <div class="modal-footer ">
+                        <p class="modal-precio ">Precio Total:<span id="total">0</span></p>
+                        <div class="modal-footer d-flex justify-content-between">
 
-            <div class="modal-content" id="carrito-contenedor">
-                <span class="close">X</span>
-                
+                            <button type="button" class="btn btn-secondary btnVaciar " id="vaciar">Vaciar Carrito</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="comprar">Comprar</button>
+                            <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Understood</button> -->
+                            </div>
+                    </div>
+                </div>
             </div>
-            <p class="modal-precio">Precio Total:<span id="total" >0</span> <button class="btnVaciar" id="vaciar">Vaciar Carrito</button></p>
-            
         </div>
-    </div>
+    </header>
     <main>
-
         <div class="container-fluid bg-trasparent my-4 p-3 carta">
             <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3" id="contenedor-libros">
-
             </div>
-
         </div>
     </main>
 
@@ -50,8 +67,9 @@
         crossorigin="anonymous"></script>
     <!-- FONTAWESOME -->
     <script src="https://kit.fontawesome.com/ac23d67988.js" crossorigin="anonymous"></script>
+    <!-- SWEET ALERT2 -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- JS -->
-
     <script src="./js/script.js"></script>
 </body>
 

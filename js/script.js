@@ -18,18 +18,17 @@ const mostrarLibros = (libros) => {
   libros.forEach((libro) => {
     const div = document.createElement("div");
     div.classList.add("col");
-    div.innerHTML = `
+    div.innerHTML = ` 
     <div class="col">
     <div class="card h-100 shadow-sm"> <img
     src="${libro.imagen}"
-    class="card-img-top" alt="...">
+    class="card-img-top" alt="Foto del libro">
     <div class="card-body">
     <div class="clearfix mb-3"> <span class="float-start badge rounded-pill bg-primary"><i class="fa-solid fa-book"></i>
-    Rog</span> <span class="float-end price-hp">$ ${libro.precio}</span> </div>
+    Book</span> <span class="float-end price-hp">$ ${libro.precio}</span> </div>
     <h5 class="card-title">${libro.titulo}</h5>
     <p class="card-text">Autor: ${libro.autor}</p>
-    <button id="agregar${libro.id}" class="text-center my-4 boton-agregar"> <a class="btn btn-warning">Agregar</a> </button>
-    
+    <button id="agregar${libro.id}" type="button" class="btn btn-primary btn-lg text-center my-4 boton-agregar">Agregar <i class="fa-duotone fa-cart-arrow-up"></i></button>
     </div>
     </div>
     </div>
@@ -66,15 +65,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 vaciarCarrito.addEventListener("click", () => {
   carrito.length = 0;
-  actCarrito()
+  actCarrito();
 })
 
 const agregarCarrito = (libroId) => {
-  const existe = carrito.some(libro => libro.id == libroId) //comprobar si el elemento ya existe en el carro
-
-  if (existe) { //SI YA ESTÁ EN EL CARRITO, ACTUALIZAMOS LA CANTIDAD
-    const libro = carrito.map(libro => { //creamos un nuevo arreglo e iteramos sobre cada curso y cuando
-      // map encuentre cual es el q igual al que está agregado, le suma la cantidad
+  const existe = carrito.some(libro => libro.id == libroId)
+  if (existe) { 
+    const libro = carrito.map(libro => { 
       if (libro.id == libroId) {
         libro.cantidad++
       }
@@ -83,75 +80,66 @@ const agregarCarrito = (libroId) => {
     const item = libros.find((libro) => libro.id == libroId);
     carrito.push(item);
   }
-  actCarrito()
-  console.log(carrito);
+  actCarrito();
 }
 
 const contenedorCarrito = document.getElementById("carrito-contenedor")
 
 const eliminarCarrito = (libroId) => {
-  const item = carrito.find((libro) => libro.id == libroId)
-  const index = carrito.indexOf(item)
+  const item = carrito.find((libro) => libro.id == libroId);
+  const index = carrito.indexOf(item);
   carrito.splice(index, 1)
-  actCarrito()
+  actCarrito();
 }
 
 const actCarrito = () => {
   contenedorCarrito.innerHTML = ""
   carrito.forEach((libro) => {
     const div = document.createElement("div");
-    div.className = ("container")
+    div.className = ("container");
     div.innerHTML = `
     
     <p>Titulo del libro: ${libro.titulo}</p>
-    <p>Precio: ${libro.precio}</p>
+    <p>Precio: $ ${libro.precio}</p>
     <p>Cantidad: <span id="cantidad">${libro.cantidad}</span></p>
-    <button onclick = "eliminarCarrito(${libro.id})" class="btnDlt">X</button>
+    <button onclick = "eliminarCarrito(${libro.id})" class="btnDlt"><i class="fa-solid fa-trash-can"></i></button>
     <hr>
     `
 
-    contenedorCarrito.appendChild(div)
+    contenedorCarrito.appendChild(div);
 
-    localStorage.setItem("carrito", JSON.stringify(carrito))
+    localStorage.setItem("carrito", JSON.stringify(carrito));
   })  
   contadorCarrito.innerText = carrito.length
-  precioTotal.innerText = carrito.reduce((acc, libro) => acc + (libro.cantidad * libro.precio), 0)
+  precioTotal.innerText = `$ ${carrito.reduce((acc, libro) => acc + (libro.cantidad * libro.precio), 0)}`
 }  
 
 
+//Completar Compra
 
-//MODAL
-if (document.getElementById("btnModal")) {
-  var modal = document.getElementById("myModal");
-  var btn = document.getElementById("btnModal");
-  var span = document.getElementsByClassName("close")[0];
-  var body = document.getElementsByTagName("body")[0];
+const comprar = document.getElementById("comprar");
 
 
-  btn.onclick = function () {
-    modal.style.display = "block";
-
-    body.style.position = "static";
-    body.style.height = "100%";
-    body.style.overflow = "hidden";
+function denegarCompra(){
+    Swal.fire({
+      title: 'Compra cancelada!',
+      text: 'Por favor, coloque objetos dentro de su carrito.',
+      icon: 'error',
+      confirmButtonColor: '#0000FF'
+    })
+  }
+  function completarCompra(){
+      Swal.fire({
+        title:'Compra completada!',
+        text:'Le enviamos un email con los datos del envio.',
+        icon:'success',
+        confirmButtonColor: '#0000FF'
+      })
+      carrito.length = 0;
+      actCarrito();
   }
 
-  span.onclick = function () {
-    modal.style.display = "none";
-
-    body.style.position = "inherit";
-    body.style.height = "auto";
-    body.style.overflow = "visible";
-  }
-
-  window.onclick = function (event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-
-      body.style.position = "inherit";
-      body.style.height = "auto";
-      body.style.overflow = "visible";
-    }
-  }
-}
-
+  comprar.addEventListener("click", () => {
+    carrito.length != 0 ? completarCompra() : denegarCompra();
+  })
+  

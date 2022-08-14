@@ -14,6 +14,7 @@
     font-size: 1;
     padding-top: 0;
     font-weight: 100px;
+    min-height: 70px;
 }
 
 .card-body{
@@ -27,42 +28,7 @@ button, input, optgroup, select, textarea{
 
 }
 
-.modalContainer {
-    display: none; 
-    position: fixed; 
-    z-index: 1;
-    padding-top: 100px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-}
 
-.modalContainer .modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid lightgray;
-    border-top: 10px solid green;
-    width: 60%;
-}
-
-.modalContainer .close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.modalContainer .close:hover,
-.modalContainer .close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
 
 .carrito{
     color: white;
@@ -71,8 +37,9 @@ button, input, optgroup, select, textarea{
 }
 
 .svg-carrito{
-    height: 70px;
-    width: 70px;
+    height: 50px;
+    width: 50px;
+    padding: 0;
 }
 
 .num-carrito{
@@ -81,7 +48,7 @@ button, input, optgroup, select, textarea{
 }
 
 .modal-precio {
-    background-color: #fefefe;
+    background-color: #fff;
     margin: auto;
     padding: 20px;
     border: 1px solid lightgray;
@@ -91,6 +58,19 @@ button, input, optgroup, select, textarea{
 }
 
 .btnVaciar{
-    background-color: green;
-    border-radius: 5px;
+    background-color: #000C66;
+}
+
+.btn-warning{
+    background-color: #000C66;
+}
+.btn-warning:hover{
+    background-color: #7EC8E3;
+}
+.btn{
+    background-color: #0000FF;
+}
+.btn:hover{
+    background-color: #7EC8E3;
+
 }
