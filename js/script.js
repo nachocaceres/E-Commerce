@@ -38,6 +38,13 @@ const mostrarLibros = (libros) => {
     const boton = document.getElementById(`agregar${libro.id}`);
     boton.addEventListener("click", () => {
       agregarCarrito(libro.id)
+      Toastify({
+        text: `El libro " ${libro.titulo} " fue agregado correctamente`,
+        className: "info",
+        style: {
+          background: "#83b06a",
+        }
+      }).showToast();
     })
   })
 }
@@ -66,6 +73,13 @@ document.addEventListener("DOMContentLoaded", () => {
 vaciarCarrito.addEventListener("click", () => {
   carrito.length = 0;
   actCarrito();
+  Toastify({
+    text: `El carrito fue vaciado correctamente`,
+    className: "info",
+    style: {
+      background: "#83b06a",
+    }
+  }).showToast();
 })
 
 const agregarCarrito = (libroId) => {
@@ -90,6 +104,13 @@ const eliminarCarrito = (libroId) => {
   const index = carrito.indexOf(item);
   carrito.splice(index, 1)
   actCarrito();
+  Toastify({
+    text: `El libro fue eliminado correctamente`,
+    className: "info",
+    style: {
+      background: "#a63737",
+    }
+  }).showToast();
 }
 
 const actCarrito = () => {
@@ -115,7 +136,7 @@ const actCarrito = () => {
 }  
 
 
-//Completar Compra
+//COMPLETAR COMPRA
 
 const comprar = document.getElementById("comprar");
 
