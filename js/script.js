@@ -3,7 +3,6 @@ fetch("./data/libros.json")
   .then((response) =>response.json())
   .then((data)=>{
     libros = data;
-    console.log(libros)
     const mostrarLibros = (libros) => {
 
       const contenedorLibros = document.getElementById("contenedor-libros");
