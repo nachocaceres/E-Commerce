@@ -145,14 +145,30 @@ function denegarCompra(){
     })
   }
   function completarCompra(){
+    Swal.fire({
+      title: 'Por favor ingrese los siguientes datos:',
+      html: `<input type="text" id="nombre" class="swal2-input" placeholder="Nombre y Apellido">
+      <input type="email" id="direccion" class="swal2-input" placeholder="Direccion de email">`,
+      confirmButtonText: 'Confirmar compra',
+      confirmButtonColor: '#0000FF',
+      focusConfirm: false,
+      preConfirm: () => {
+        const nombre = Swal.getPopup().querySelector('#nombre').value
+        const direccion = Swal.getPopup().querySelector('#direccion').value
+        if (!nombre || !direccion) {
+          Swal.showValidationMessage(`Por favor rellena las casillas con sus datos`)
+        }
+        return { nombre: nombre, direccion: direccion }
+      }
+    }).then((result) => {
       Swal.fire({
-        title:'Compra completada!',
-        text:'Le enviamos un email con los datos del envio.',
-        icon:'success',
+        title: `Gracias por su compra <i><b>${result.value.nombre}</b></i>
+        Se te envio el paso a seguir de la compra al email:  <i><b>${result.value.direccion}</b></i>`,
         confirmButtonColor: '#0000FF'
       })
       carrito.length = 0;
       actCarrito();
+    })
   }
 
   comprar.addEventListener("click", () => {
